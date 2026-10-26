@@ -43,8 +43,6 @@
 
 [![BPMN: поиск вакансии и отклик](diagrams/workwave-bpmn.png)](docs/bpmn-process.md)
 
-Схема крупная, по частям и с описанием: [docs/bpmn-process.md](docs/bpmn-process.md).
-
 ### Диаграмма вариантов использования
 
 ![Use case](diagrams/use-case-diagram.png)
@@ -56,24 +54,6 @@
 ## Как связаны артефакты
 
 Пользовательские истории (AUTH, RES, SRCH, VAC, APP, CAB, EMP, CND, ADM) → функциональные требования (ФТ-1 … ФТ-9, в каждом указан источник) → сценарии использования (UC-01 … UC-08) → BPMN-процесс отклика → модель данных. Подробно: [матрица трассировки](docs/traceability.md).
-
-## Структура репозитория
-
-```
-WorkWave/
-├── README.md
-├── docs/
-│   ├── user-stories.md, requirements.md, traceability.md
-│   ├── use-cases.md, bpmn-process.md, state-diagrams.md
-│   ├── roles-permissions.md, database.md
-│   ├── prototype.md, glossary.md, open-questions.md
-│   └── source/            # исходные .docx
-├── design/                # скриншоты макетов
-└── diagrams/
-    ├── workwave-bpmn.bpmn / .svg / .png (+ part1-3.png)
-    ├── use-case-diagram.png
-    └── db-schema.png
-```
 
 ## Инструменты
 
