@@ -30,12 +30,8 @@
 | Процесс BPMN | «Поиск вакансии и отклик»: дорожки соискателя, платформы, работодателя; текстовое описание | [docs/bpmn-process.md](docs/bpmn-process.md) |
 | Диаграммы состояний | Жизненные циклы отклика и вакансии | [docs/state-diagrams.md](docs/state-diagrams.md) |
 | Роли и права | Матрица доступа по ролям | [docs/roles-permissions.md](docs/roles-permissions.md) |
-| Схема БД | ER-диаграмма, таблицы, известные ошибки модели | [docs/database.md](docs/database.md) |
-| Глоссарий | Термины проекта | [docs/glossary.md](docs/glossary.md) |
-| Открытые вопросы | Принятые решения и нерешённые вопросы | [docs/open-questions.md](docs/open-questions.md) |
+| Схема БД | ER-диаграмма, таблицы | [docs/database.md](docs/database.md) |
 | Прототип | 6 экранов интерфейса, расхождения с документами | [docs/prototype.md](docs/prototype.md), [Figma](https://www.figma.com/design/IdnyTGSgoSKX4rHOgvB7s2/Untitled?node-id=0-1&t=0pEziW4ID0ZqOWna-1) |
-
-Исходные документы Word лежат в [docs/source](docs/source): это первая версия, актуальны файлы Markdown.
 
 ## Диаграммы
 
