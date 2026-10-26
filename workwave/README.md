@@ -25,7 +25,7 @@
 |---|---|---|
 | Пользовательские истории | 68 историй в 9 эпиках с критериями приёмки и приоритетами MoSCoW | [docs/user-stories.md](docs/user-stories.md) |
 | Требования | 9 групп функциональных требований (ФТ) и 21 нефункциональное (НФТ), с источниками | [docs/requirements.md](docs/requirements.md) |
-| Матрица трассировки | Эпик, требования, сценарии, элементы BPMN, пробелы покрытия | [docs/traceability.md](docs/traceability.md) |
+| Матрица трассировки | Эпик, требования, сценарии, элементы BPMN | [docs/traceability.md](docs/traceability.md) |
 | Сценарии использования | 8 use case с диаграммой, предусловиями, основным и альтернативными потоками | [docs/use-cases.md](docs/use-cases.md) |
 | Процесс BPMN | «Поиск вакансии и отклик»: дорожки соискателя, платформы, работодателя; текстовое описание | [docs/bpmn-process.md](docs/bpmn-process.md) |
 | Диаграммы состояний | Жизненные циклы отклика и вакансии | [docs/state-diagrams.md](docs/state-diagrams.md) |
