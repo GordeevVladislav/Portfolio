@@ -13,8 +13,7 @@
 | 3 | User Stories + Acceptance Criteria (Given-When-Then) | [docs/03-user-stories.md](docs/03-user-stories.md) |
 | 4 | SQL: исходный и улучшенный запрос, схема v2, тестовые данные | [docs/04-sql/](docs/04-sql/) |
 | 5 | API: описание метода и спецификация OpenAPI 3.0 | [docs/05-api/](docs/05-api/) |
-| 6 | Эталонная реализация логики брони и подарка (Python, без зависимостей) | [src/merch_shop/](src/merch_shop/) |
-| 7 | Тесты (SQL, OpenAPI, бронирование, гонка за последнюю единицу) | [tests/](tests/) |
+| 6 | Тесты (SQL, OpenAPI, бронирование, гонка за последнюю единицу) | [tests/](tests/) |
 
 ## Что улучшено относительно исходного решения
 
