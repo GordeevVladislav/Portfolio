@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: Merch Shop API
+  version: 1.0.0
+  description: >
+    API интернет-магазина мерча (MVP). Самовывоз, оплата картой онлайн,
+    бронь товара на 15 минут, подарочные наклейки от 2000 руб.
+servers:
+  - url: https://shop.example.com
+security:
+  - bearerAuth: []
+paths:
+  /api/v1/cart/add:
+    post:
+      summary: Добавить товар в корзину и зарезервировать на 15 минут
+      operationId: addToCart
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: false
+          description: Защита от двойной отправки. Результат хранится 10 минут.
+          schema:
+            type: string
+            maxLength: 64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddToCartRequest'
+            example:
+              product_id: 456
+              quantity: 1
+      responses:
+        '200':
+          description: Товар добавлен и зарезервирован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddToCartResponse'
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                status: error
+                code: UNAUTHORIZED
+                message: Требуется авторизация
+        '404':
+          description: Товар не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                status: error
+                code: PRODUCT_NOT_FOUND
+                message: Товар с id=456 не найден
+        '409':
+          description: Конфликт состояния остатков
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockConflictError'
+              examples:
+                outOfStock:
+                  value:
+                    status: error
+                    code: OUT_OF_STOCK
+                    message: Товара нет в наличии
+                insufficient:
+                  value:
+                    status: error
+                    code: INSUFFICIENT_STOCK
+                    message: Доступно только 2 шт.
+                    available: 2
+                reservedByOther:
+                  value:
+                    status: error
+                    code: RESERVED_BY_OTHER
+                    message: Товар зарезервирован другим покупателем
+                    available_at: '2026-05-25T14:40:00Z'
+        '422':
+          description: Ошибка валидации
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+              example:
+                status: error
+                code: VALIDATION_ERROR
+                message: Неверные параметры запроса
+                errors:
+                  - field: quantity
+                    message: Должно быть целым числом от 1 до 10
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    AddToCartRequest:
+      type: object
+      required: [product_id, quantity]
+      properties:
+        product_id:
+          type: integer
+          minimum: 1
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 10
+    AddToCartResponse:
+      type: object
+      required: [status, message, item, cart, gift]
+      properties:
+        status:
+          type: string
+          enum: [success]
+        message:
+          type: string
+        item:
+          type: object
+          required: [product_id, quantity, unit_price, reserved_until]
+          properties:
+            product_id:
+              type: integer
+            quantity:
+              type: integer
+            unit_price:
+              type: number
+              format: double
+            reserved_until:
+              type: string
+              format: date-time
+        cart:
+          type: object
+          required: [items_count, subtotal]
+          properties:
+            items_count:
+              type: integer
+            subtotal:
+              type: number
+              format: double
+        gift:
+          type: object
+          required: [applied, threshold]
+          properties:
+            applied:
+              type: boolean
+            threshold:
+              type: number
+              format: double
+              example: 2000.00
+            remaining_amount:
+              type: number
+              format: double
+              description: Сколько осталось до подарка. Равно 0, когда подарок применён.
+    Error:
+      type: object
+      required: [status, code, message]
+      properties:
+        status:
+          type: string
+          enum: [error]
+        code:
+          type: string
+        message:
+          type: string
+    StockConflictError:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+          properties:
+            code:
+              type: string
+              enum: [OUT_OF_STOCK, INSUFFICIENT_STOCK, RESERVED_BY_OTHER]
+            available:
+              type: integer
+              description: Только для INSUFFICIENT_STOCK
+            available_at:
+              type: string
+              format: date-time
+              description: Только для RESERVED_BY_OTHER
+    ValidationError:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
