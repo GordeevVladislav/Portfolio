@@ -1,0 +1,21 @@
+{
+  "trade_clients": "86 700",
+  "active_clients": "69 360",
+  "covered_clients": "27 744",
+  "start_avg": "1,96",
+  "target_avg": "5,00",
+  "bank_target": "3,40",
+  "avg_covered_m18": "5,00",
+  "avg_segment_m18": "3,18",
+  "avg_base_after": "2,24",
+  "extra_products": "84 342",
+  "core_existing": "207,5",
+  "nonbank_existing": "158,8",
+  "core_new_10": "22,1",
+  "core_total": "230",
+  "total_low": "410",
+  "total_high": "662",
+  "acq_existing_low": "145,7",
+  "acq_existing_high": "349,6",
+  "manager_share_time": "5,1%"
+}
