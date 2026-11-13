@@ -58,5 +58,5 @@
 
 ## Контакты
 
-vladgordeev44@gmail.com · @supkles
+vladgordeev44@gmail.com · https://t.me/supkles
 
